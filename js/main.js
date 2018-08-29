@@ -1,4 +1,4 @@
-import { Papa } from "./papaparse";
+import Papa from "./papaparse";
 
 function handleFileSelect(evt) {
     evt.stopPropagation();
@@ -15,7 +15,14 @@ function handleFileSelect(evt) {
     // }
     // gets only the first file
     var csvFile = files[0];
-    Papa.parse("sd, ee, q \n1, 2, 3");
+    // Papa.parse("sd, ee, q \n1, 2, 3");
+    Papa.parse(csvFile, {
+        header: true,
+        complete: function(results) {
+            console.log("Finished:", results.data);
+        }
+    });
+
 }
 
 function handleDragOver(evt) {

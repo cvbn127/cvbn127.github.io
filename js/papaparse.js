@@ -22,6 +22,7 @@
 	else
 	{
 		// Browser globals (root is window)
+		var root = Window;
 		root.Papa = factory();
 	}
 }(this, function()

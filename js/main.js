@@ -1,4 +1,5 @@
-import Papa from "./papaparse";
+// import { Papa } from "./papaparse.js";
+var Papa = Window.Papa;
 
 function handleFileSelect(evt) {
     evt.stopPropagation();
@@ -15,14 +16,17 @@ function handleFileSelect(evt) {
     // }
     // gets only the first file
     var csvFile = files[0];
-    // Papa.parse("sd, ee, q \n1, 2, 3");
+    var parsedData = new Array;
+    var header = new Array;
     Papa.parse(csvFile, {
         header: true,
         complete: function(results) {
-            console.log("Finished:", results.data);
+            console.log("Finished:", results);
+            header = results.meta.fields;
+            parsedData = results.data;
         }
     });
-
+    // console.log(header);
 }
 
 function handleDragOver(evt) {

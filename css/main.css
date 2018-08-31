@@ -1,0 +1,28 @@
+.row{
+    width: 100%;
+    /*margin: 0 auto;*/
+    text-align: center;
+}
+
+.horizontalBlock{
+    /* display: inline-block; */
+    display: inline;
+    height: 300px;
+    text-align: center;
+}
+
+.headerElementZone{
+    position: absolute;
+    z-index: 9;
+    background-color: #f1f1f1;
+    border: 1px solid #d3d3d3;
+    text-align: center;
+}
+
+.headerElement{
+    cursor: move;
+    z-index: 10;
+    background-color: #aaaaf3;
+    color: #fff;
+    border: solid black 2px;
+}

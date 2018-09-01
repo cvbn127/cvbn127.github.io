@@ -20,9 +20,11 @@
 }
 
 .headerElement{
+    margin: 5px;
     cursor: move;
     z-index: 10;
-    background-color: #aaaaf3;
+    background-color: #aab;
     color: #fff;
-    border: solid black 2px;
+    border: solid gray 1px;
+    border-radius: 3px;
 }

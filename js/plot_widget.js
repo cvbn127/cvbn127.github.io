@@ -1,4 +1,6 @@
 "use strict";
+// import { Chart } from "./Chart.js";
+// import Chart from './Chart.js';
 
 export class PlotWidget {
   constructor(id) {
@@ -12,6 +14,7 @@ export class PlotWidget {
     valueZone.className = "col-1";
     valueZone.style = "writing-mode: tb-rl;";
     valueZone.innerText = "value";
+    valueZone.id = "value_zone_" + id;
     row.appendChild(valueZone);
 
     let wrapper = document.createElement("div");
@@ -24,9 +27,10 @@ export class PlotWidget {
     let keyZone = document.createElement("div");
     keyZone.className = "col-7";
     keyZone.innerText = "key";
+    keyZone.id = "key_zone_" + id;
     wrapper.appendChild(keyZone);
 
     this.DomElement = block;
-    this.id = id;
+    this._id = id;
   }
 }

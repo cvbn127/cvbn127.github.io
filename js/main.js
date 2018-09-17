@@ -6,7 +6,7 @@ var valueZoneArray = new Array();
 
 var widgets = new Array();
 
-var globalPlotIdx = 0;
+var globalPlotIdx = 1;
 
 function handleFileSelect(evt) {
   evt.stopPropagation();

@@ -2,6 +2,7 @@
 
 export class HeaderWidget {
   constructor(header, id) {
+    this._id = id;
     let block = document.createElement("div");
     block.className = "col-4";
 
@@ -10,13 +11,18 @@ export class HeaderWidget {
     let indexElement = this._makeMovableHeaderElement("Index");
     headerElementZone.appendChild(indexElement);
     for (var i = 0; i < header.length; i++) {
-      let element = this._makeMovableHeaderElement(header[i]);
-      headerElementZone.appendChild(element);
+      if (header[i].length != 0) {
+        let element = this._makeMovableHeaderElement(header[i]);
+        headerElementZone.appendChild(element);
+      }
     }
 
     block.appendChild(headerElementZone);
-    this.id = id;
     this.DomElement = block;
+    console.log(this._id);
+  }
+  getId(){
+    return this._id;
   }
   _makeMovableHeaderElement(text) {
     let headerElement = document.createElement("div");
@@ -40,15 +46,26 @@ export class HeaderWidget {
       headerElement.style.top = e.clientY + "px";
       headerElement.style.left = e.clientX + "px";
     }
-
+    let id = this._id;
+    console.log(id);
     function closeDragElement() {
       /* stop moving when mouse button is released:*/
       document.onmouseup = null;
       document.onmousemove = null;
-      headerElement.style = baseStyle;
+      let x = parseFloat(headerElement.style.left);
+      let y = parseFloat(headerElement.style.top);
+      let element = document.elementFromPoint(x, y);
+      let isAllowedElement =
+        element !== undefined && element !== null &&
+        (element.id == "key_zone_" + id || element.id == "value_zone_" + id);
+      if (isAllowedElement) {
+        element.appendChild(headerElement);
+      } else {
+        headerElement.style = baseStyle;
+      }
     }
 
     headerElement.onmousedown = dragMouseDown;
     return headerElement;
-  };
+  }
 }

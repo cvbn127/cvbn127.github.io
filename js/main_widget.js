@@ -16,7 +16,7 @@ export class MainWidget {
     row.appendChild(this.leftBlock.DomElement);
     row.appendChild(this.rightBlock.DomElement);
 
-    this.id = id;
+    this._id = id;
 
     let dropZone = document.getElementById("drop_zone");
     // dropZone.parentNode.insertBefore(fileInfoZone, dropZone.nextSibling);

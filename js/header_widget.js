@@ -21,7 +21,7 @@ export class HeaderWidget {
     this.DomElement = block;
     console.log(this._id);
   }
-  getId(){
+  getId() {
     return this._id;
   }
   _makeMovableHeaderElement(text) {
@@ -36,6 +36,9 @@ export class HeaderWidget {
       headerElement.style.position = "absolute";
       headerElement.style.opacity = "0.7";
       headerElement.style.outline = "rgba(200, 200, 255, 0.8) solid 5px";
+      headerElement.style.top = e.clientY + "px";
+      headerElement.style.left = e.clientX + "px";
+
       document.onmouseup = closeDragElement;
       document.onmousemove = elementDrag;
     }
@@ -47,21 +50,27 @@ export class HeaderWidget {
       headerElement.style.left = e.clientX + "px";
     }
     let id = this._id;
-    console.log(id);
+    // console.log(id);
     function closeDragElement() {
       /* stop moving when mouse button is released:*/
       document.onmouseup = null;
       document.onmousemove = null;
+
       let x = parseFloat(headerElement.style.left);
       let y = parseFloat(headerElement.style.top);
-      let element = document.elementFromPoint(x, y);
-      let isAllowedElement =
-        element !== undefined && element !== null &&
-        (element.id == "key_zone_" + id || element.id == "value_zone_" + id);
-      if (isAllowedElement) {
-        element.appendChild(headerElement);
-      } else {
-        headerElement.style = baseStyle;
+
+      headerElement.style = baseStyle;
+
+      if (!isNaN(x) && !isNaN(y)) {
+        let element = document.elementFromPoint(x, y);
+        console.log(element);
+        let isAllowedElement =
+          element !== undefined &&
+          element !== null &&
+          (element.id == "key_zone_" + id || element.id == "value_zone_" + id);
+        if (isAllowedElement) {
+          element.appendChild(headerElement);
+        }
       }
     }
 

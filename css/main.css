@@ -11,7 +11,7 @@
     text-align: center;
 }
 
-.headerElementZone{
+.dataElementZone{
     /* position: absolute; */
     z-index: 9;
     background-color: #f1f1f1;
@@ -19,7 +19,7 @@
     text-align: center;
 }
 
-.headerElement{
+.dataElement{
     margin: 5px;
     cursor: move;
     z-index: 10;

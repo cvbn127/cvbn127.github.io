@@ -1,5 +1,5 @@
 "use strict";
-import { HeaderWidget } from "./header_widget.js";
+import { ListWidget } from "./list_widget.js";
 import { PlotWidget } from "./plot_widget.js";
 
 export class MainWidget {
@@ -10,7 +10,8 @@ export class MainWidget {
     row.className = "row";
     fileInfoZone.appendChild(row);
 
-    this.leftBlock = new HeaderWidget(header, id);
+    header.unshift("index");
+    this.leftBlock = new ListWidget(header, id);
     this.rightBlock = new PlotWidget(id);
 
     row.appendChild(this.leftBlock.DomElement);

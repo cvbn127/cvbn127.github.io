@@ -40,7 +40,7 @@ function showFileInfo(header) {
   globalPlotIdx++;
 }
 
-// Setup the dnd listeners.
+// Setup the drag-n-drop listeners.
 var dropZone = document.getElementById("drop_zone");
 dropZone.addEventListener("dragover", handleDragOver, false);
 dropZone.addEventListener("drop", handleFileSelect, false);

@@ -10,17 +10,32 @@ export class MainWidget {
     row.className = "row";
     fileInfoZone.appendChild(row);
 
-    header.unshift("index");
-    this.leftBlock = new ListWidget(header, id);
-    this.rightBlock = new PlotWidget(id);
+    let rightBlock = new PlotWidget(id);
 
-    row.appendChild(this.leftBlock.DomElement);
-    row.appendChild(this.rightBlock.DomElement);
+    header.unshift("index");
+    let leftBlock = new ListWidget(header, id);
+    let baseStyleKeyZone = rightBlock.getKeyZone().style;
+    let baseStyleValueZone = rightBlock.getValueZone().style;
+
+    leftBlock.addEventListener("onElementStartDragging", function() {
+      let highlight = function(elem) {
+        elem.style.opacity = "0.7";
+        elem.style.outline = "rgba(200, 200, 255, 0.8) solid 5px";
+      };
+      highlight(rightBlock.getKeyZone());
+      highlight(rightBlock.getValueZone());
+    });
+    leftBlock.addEventListener("onElementEndDragging", function() {
+      rightBlock.getKeyZone().style = baseStyleKeyZone;
+      rightBlock.getValueZone().style = baseStyleValueZone;
+    });
+
+    row.appendChild(leftBlock.DomElement);
+    row.appendChild(rightBlock.DomElement);
 
     this._id = id;
 
     let dropZone = document.getElementById("drop_zone");
-    // dropZone.parentNode.insertBefore(fileInfoZone, dropZone.nextSibling);
     dropZone.parentNode.appendChild(fileInfoZone);
   }
 }
